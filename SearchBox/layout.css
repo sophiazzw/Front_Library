@@ -1,0 +1,112 @@
+#wrapper{
+    width: 1000px;
+    margin: 0 auto;
+}
+.search1 {
+    float: left;
+    width: 262px;
+    height: 42px;
+    margin: 38px 0 0 10px;
+    background: transparent url(images/search-bg.png?1372734867) no-repeat scroll 0 0;
+}
+
+.search1 .search-bg {
+    float: left;
+    width: 211px;
+    height: 27px;
+    position: relative;
+    z-index: 0;
+    margin: 8px 0 0 8px;
+}
+
+.search1 .search-input {
+    float: left;
+    width: 192px;
+    overflow: hidden;
+}
+
+.search1 .search-input input {
+    border: 0;
+    width: 187px;
+    height: 19px;
+    line-height: 19px;
+    padding: 3px 2px 0;
+    margin: 1px 0 0 1px;
+    outline: 0;
+    color: rgb(153, 153, 153)
+}
+
+.search1 .search-btn {
+    float: left;
+    width: 30px;
+    height: 27px;
+    overflow: hidden;
+    margin: 8px 0 0 9px;
+    background: transparent;
+}
+
+.search1 .search-btn input {
+    width: 30px;
+    height: 27px;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+}
+
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~search1~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.search2 {
+    float: left;
+    width: 251px;
+    height: 32px;
+    margin: 42px 0 0 10px;
+    background: transparent;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.075);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=rgba(0,0,0,0.75), Direction=0, Strength=2px);
+}
+
+.search2 .search-bg {
+    float: left;
+    width: 213px;
+    height: 22px;
+    position: relative;
+    z-index: 0;
+    margin: 5px 3px 0;
+    border-right: 1px solid #ccc;
+}
+
+.search2 .search-input {
+    float: left;
+    width: 192px;
+    overflow: hidden;
+}
+
+.search2 .search-input input {
+    border: 0;
+    width: 187px;
+    height: 19px;
+    line-height: 19px;
+    padding: 1px 2px 0;
+    margin: 1px 0 0 1px;
+    outline: 0;
+    color: rgb(153, 153, 153)
+}
+
+.search2 .search-btn {
+    float: left;
+    width: 30px;
+    height: 22px;
+    overflow: hidden;
+    margin: 6px 0 0 9px;
+    background: transparent;
+}
+
+.search2 .search-btn input {
+    width: 30px;
+    height: 22px;
+    border: 0;
+    cursor: pointer;
+    background: transparent;
+}

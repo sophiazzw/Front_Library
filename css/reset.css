@@ -25,6 +25,11 @@ address, cite, dfn, em, var {
 code, kbd, pre, samp, tt {
     font-family:"Courier New", Courier, monospace
 }
+i,b{
+    text-decoration: none;
+    font-weight:normal;
+    font-style: normal;
+}
 small {
     font-size:12px
 }
