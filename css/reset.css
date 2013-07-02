@@ -1,7 +1,7 @@
 
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, fieldset, lengend, button, input, textarea, th, td {
+body, div, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, code, fieldset, legend, button, input, textarea, th, td {
     margin:0;
-    padding:0
+    padding:0;
 }
 body, button, input, select, textarea {
     font:12px/1 Arial, Helvetica, "\5b8b\4f53", sans-serif;
@@ -31,15 +31,16 @@ small {
 ul, ol {
     list-style:none
 }
-a {
+:link, :visited {
     text-decoration:none
 }
 a:hover {
     text-decoration:underline
 }
-abbr[title], acronym[title] {
-    border-bottom:1px dotted;
-    cursor:help
+abbr,acronym{
+    border:0;
+    font-variant: normal;
+    cursor: help;
 }
 q:before, q:after {
     content:''
@@ -50,8 +51,17 @@ legend {
 fieldset, img {
     border:none
 }
-button, input, select, textarea {
-    font-size:100%
+:focus{
+    outline: 0;
+}
+button, input, select, textarea ,optgroup, option{
+    font-size:100%;
+    font-family: inherit;
+    font-weight: inherit;
+}
+/*@purpose To enable resizing for IE6,IE7*/
+input, button, textarea , select{
+    *font-size:100%;
 }
 table {
     border-collapse:collapse;
@@ -64,3 +74,24 @@ hr {
 html {
     overflow-y:scroll
 }
+
+sup, sub{
+    font-size: 100%;
+    vertical-align:baseline;
+}
+
+q:before, q:after{
+    content:'';
+}
+
+.clearfix:after{
+    content:'.';
+    display: block;
+    height: 0;
+    clear:both;
+    visibility: hidden;
+}
+
+.clearfix{display: inline-block;}
+* html .clearfix{height: 1%;}
+.clearfix {display: block;}
