@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SlideBox</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<label>输入密码&nbsp;</label><input type="password" name="cap" value=""/>
+<p id="capstip" style="display:none;padding:0;color: #ff0a0a">
+    Caps Lock键正处于启用状态，<br>
+    启用它可能导致密码输入错误。
+</p>
+<script type="text/javascript">
+    var EventUtil = {
+        addHandler: function(element,type,handler){
+            if(element.addEventListener){
+                element.addEventListener(type,handler,false);
+            }else if(element.attachEvent){
+                element.attachEvent("on"+type,handler);
+            }else{
+                element["on"+type]=handler;
+            }
+        },
+        getEvent:function(event){
+            return event?event:window.event;
+        },
+        getTarget:function(event){
+            return event.target || event.srcElement;
+        },
+        preventDefault:function(event){
+            if(event.preventDefault){
+                event.preventDefault();
+            }else{
+                event.returnValue = false;
+            }
+        },
+        removeHandler:function(element,type,handler){
+            if(element.removeEventListener){
+                element.removeEventListener(type,handler,false);
+            }else if(element.detachEvent){
+                element.detachEvent("on"+type,handler);
+            }else{
+                element["on"+type] = null;
+            }
+        },
+        stopPropagation:function(event){
+            if(event.stopPropagation){
+                event.stopPropagation();
+            }else{
+                event.cancelBubble = true;
+            }
+        }
+    };
+    var cap = document.getElementsByName("cap").item(0);
+    var isCap = 0;
+    EventUtil.addHandler(cap,"keydown",function(e){
+        var capsLockKey = !!((e.keyCode ? e.keyCode : e.which)==20);
+        if(capsLockKey) isCap++;
+        var captip = document.getElementById("capstip");
+        if(capsLockKey&&isCap%2){
+            captip.style.display="block";
+        }else{
+            captip.style.display="none";
+        }
+    });
+</script>
+</body>
+</html>
