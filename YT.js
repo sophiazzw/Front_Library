@@ -180,18 +180,6 @@
 			}
 		},
 
-		/* open a series of urls at one time */
-		openURLs: function (url){
-			if(!url) return false;
-			var attach = "http://";
-			var urlSplit = url.split(/\r\n|\r|\n/);
-			for(i = 0; i < urlSplit.length; i++){
-				if(urlSplit[i].indexOf(attach) < 0)
-					urlSplit[i] = attach + urlSplit[i];
-				window.open(urlSplit[i], "window"+i)
-			}
-		},
-
 		/* test css attribute is supported */
 		isCss3Support: function() {
 			var div = document.createElement('div'),
@@ -207,6 +195,18 @@
 				}
 			}
 			return false;
+		},
+
+		/* open a series of urls at one time */
+		openURLs: function (url){
+			if(!url) return false;
+			var attach = "http://";
+			var urlSplit = url.split(/\r\n|\r|\n/);
+			for(i = 0; i < urlSplit.length; i++){
+				if(urlSplit[i].indexOf(attach) < 0)
+					urlSplit[i] = attach + urlSplit[i];
+				window.open(urlSplit[i], "window"+i)
+			}
 		}
     };
     window.$yt = $yt;
