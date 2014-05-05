@@ -129,10 +129,85 @@
 			return navigator.userAgent.match(/iPad/i) ? true : false;
 		},
 
-		isPhone: function () {
-			return (navigator.userAgent.match(/Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|ZuneWP7|IEMobile|Opera Mini/i) ? true : false;
+		/* may not exactly right, mostly works */
+		isMobile: function () {
+			return navigator.userAgent.match(/Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|ZuneWP7|IEMobile|Opera Mini/i) ? true : false;
+		},
+
+		/* sof question id 566303 by Paul Sweatte */
+		isIE6: function () {
+			return (!!window.ActiveXObject && !window.XMLHttpRequest) ? true : false;
+		},
+
+		isIE6_8: function () {
+			return !$.support.leadingWhitespace;
+		},
+
+		/* By Marat Tanalin ie detectors*/
+		islessIE6: function () {
+			return document.all && !window.XMLHttpRequest;
+		},
+
+		islessIE7: function () {
+			return document.all && !document.querySelector;
+		},
+
+		islessIE8: function () {
+			return document.all && !document.addEventListener;
+		},
+
+		islessIE9: function () {
+			return document.all && !window.atob;
+		},
+
+		islessIE10: function () {
+			return document.all ? true : false;
+		},
+
+		/* check HTML5 support by video play type */
+		supportHTML5Level: function () {
+			if ( !! document.createElement('video').canPlayType) {
+			    var vidTest = document.createElement("video");
+			    var oggTest = vidTest.canPlayType('video/ogg; codecs="theora, vorbis"');
+			    if (!oggTest) {
+			      	h264Test = vidTest.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
+			      	return h264Test ? (h264Test == "probably" ? "full" : "some") : "not";
+			    } else {
+			      	return oggTest == "probably" ? "full" : "some";
+			    }
+			} else {
+			    return "not";
+			}
+		},
+
+		/* open a series of urls at one time */
+		openURLs: function (url){
+			if(!url) return false;
+			var attach = "http://";
+			var urlSplit = url.split(/\r\n|\r|\n/);
+			for(i = 0; i < urlSplit.length; i++){
+				if(urlSplit[i].indexOf(attach) < 0)
+					urlSplit[i] = attach + urlSplit[i];
+				window.open(urlSplit[i], "window"+i)
+			}
+		},
+
+		/* test css attribute is supported */
+		isCss3Support: function() {
+			var div = document.createElement('div'),
+				vendors = 'Khtml O Moz Webkit'.split(' '),
+				len = vendors.length;
+			return function(prop) {
+				return ( prop in div.style )||('-ms-' + prop in div.style) ? true : false;
+				prop = prop.replace(/^[a-z]/, function(val) {
+					return val.toUpperCase();
+				});
+				while(len--) {
+					if ( vendors[len] + prop in div.style ) return true;
+				}
+			}
+			return false;
 		}
-		
     };
     window.$yt = $yt;
 })(typeof window !== "undefined" ? window : this);
