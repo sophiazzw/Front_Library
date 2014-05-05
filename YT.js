@@ -101,6 +101,29 @@
 		    return this;
 		},
 
+		/* get a cookie of the cookie name*/
+		getCookie: function (cookieName) {
+			if (document.cookie.length > 0) {
+				begin = document.cookie.indexOf(cookieName + "=");
+				if (begin != -1) {
+					begin += cookieName.length + 1;
+					end = document.cookie.indexOf(";", begin);
+					if (end == -1) end = document.cookie.length;
+					return unescape(document.cookie.substring(begin, end));
+				}
+			}
+			return null;
+		},
+
+		/* set cookie with name ,value ,expire days */
+		setCookie: function (cookieName, value, expiredays) {
+			if (expiredays == null || expiredays == undefined || expiredays == '' || isNaN(expiredays)) {
+				expiredays = 365;
+			}
+			var ExpireDate = new Date();
+			ExpireDate.setTime(ExpireDate.getTime() + (expiredays * 24 * 3600 * 1000));
+			document.cookie = cookieName + "=" + escape(value) + ((expiredays == null) ? "": ";path=/; expires=" + ExpireDate.toGMTString());
+		}
 		
     };
     window.$util = $util;
