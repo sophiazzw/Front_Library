@@ -123,6 +123,14 @@
 			var ExpireDate = new Date();
 			ExpireDate.setTime(ExpireDate.getTime() + (expiredays * 24 * 3600 * 1000));
 			document.cookie = cookieName + "=" + escape(value) + ((expiredays == null) ? "": ";path=/; expires=" + ExpireDate.toGMTString());
+		},
+
+		isIpad: function () {
+			return navigator.userAgent.match(/iPad/i) ? true : false;
+		},
+
+		isPhone: function () {
+			return (navigator.userAgent.match(/Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|ZuneWP7|IEMobile|Opera Mini/i) ? true : false;
 		}
 		
     };
