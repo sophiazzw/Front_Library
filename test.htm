@@ -8,11 +8,19 @@
 	<ul>
 	  	<li id="foo">foo</li>
 	  	<li id="bar">bar</li>
+	  	<a id="outer" href="javascript:;">click me</a>
 	</ul>
+	<script src="JSLibrary/chai.js" ></script>
 	<script src="YT.js"></script>
 	<script type="text/javascript">
-	console.log( $util( "li" ).get( 0 ) );	
-	console.log( $util.get(0) );
+	//console.log( $util( "li" ).get( 0 ) );	
+	var color = {}
+	console.log($util().firstValue(color));
+	$util('ul a').cancelDragDefault();
+	var chai = Object.create(chai);
+	var expect = chai.expect;
+	expect($util().isArray([])).to.be.true;
+	expect('string').to.be.a("string");
 	</script>
 	
 </body>
