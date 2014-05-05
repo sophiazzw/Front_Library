@@ -1,7 +1,7 @@
 (function (window, undefined) {
-    var $util = function (properties) {
+    var $yt = function (properties) {
         if ( window === this ) {
-            return new $util(properties);
+            return new $yt(properties);
         }
         var result = [];
 		if (typeof properties === 'string'){
@@ -25,7 +25,7 @@
 
 	var indexOf = arr.indexOf;
 
-    $util.fn = $util.prototype = {
+    $yt.fn = $yt.prototype = {
 
     	hide: function(fadespeed,fn){
     		for (var i = 0; i < this.length; i++){
@@ -126,5 +126,5 @@
 		}
 		
     };
-    window.$util = $util;
+    window.$yt = $yt;
 })(typeof window !== "undefined" ? window : this);
