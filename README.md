@@ -11,14 +11,27 @@ A personal common javascript library for front web development, based on jQuery.
 * alert
 * toArray
 * isArray
-* genRate
-* arrayMax
-* firstValue
+* genRate 
+* getArrayMax
+* getArrayMin
+* getFirstValue
 * loadImage
 * cancelDragDefault
 * getCookie
 * setCookie
-
+* isIpad
+* isMobile
+* isIE6
+* isIE6_8
+* islessIE6
+* islessIE7
+* islessIE8
+* islessIE9
+* islessIE10
+* supportHTML5Level
+* supportCss3
+* openURLs
+* clone
 ...to be continued
 ## Usage
 	<script src="YT.js"></script>

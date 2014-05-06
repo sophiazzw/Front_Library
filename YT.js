@@ -52,6 +52,10 @@
     		return this;
     	},
 
+    	trim: function(str){
+    		return str.replace(/^\s+|\s+$/gm,'');
+    	},
+
     	toArray: function() {
 			return slice.call( this );
 		},
@@ -61,18 +65,22 @@
 	  	},
 
 	  	/* generate true or false as a rate of a:b */
-	  	genRate:	function(a,b){
+	  	genRate: function(a,b){
 			var rand = parseInt(Math.random() * (a + b)) + 1;
 			return result = (rand <= a) ? true : false; 
 		},
 
 		/* get the max number in an array */
-		arrayMax: function(array) {
+		getArrayMax: function(array) {
 			return Math.max.apply({},array);
 		},
 
+		getArrayMin: function(array) {
+			return Math.min.apply({},array);
+		},
+
 		/* get value of the first key in an object */
-		firstValue: function(object){
+		getFirstValue: function(object){
 			for (var i in object){
 				return object[i];
 			}
@@ -180,8 +188,8 @@
 			}
 		},
 
-		/* test css attribute is supported */
-		isCss3Support: function() {
+		/* test css attribute is supported or not */
+		supportCss3: function() {
 			var div = document.createElement('div'),
 				vendors = 'Khtml O Moz Webkit'.split(' '),
 				len = vendors.length;
@@ -207,7 +215,33 @@
 					urlSplit[i] = attach + urlSplit[i];
 				window.open(urlSplit[i], "window"+i)
 			}
+		},
+
+		/**/
+		clone: function (obj) {
+		    if (null == obj || "object" != typeof obj) return obj;
+		    if (obj instanceof Date) {
+		        var copy = new Date();
+		        copy.setTime(obj.getTime());
+		        return copy;
+		    }
+		    if (obj instanceof Array) {
+		        var copy = [];
+		        for (var i = 0, len = obj.length; i < len; i++) {
+		            copy[i] = arguments.callee(obj[i]);
+		        }
+		        return copy;
+		    }
+		    if (obj instanceof Object) {
+		        var copy = {};
+		        for (var attr in obj) {
+		            if (obj.hasOwnProperty(attr)) copy[attr] = arguments.callee(obj[attr]);
+		        }
+		        return copy;
+		    }
+		    throw new Error("Unable to copy obj! Its type isn't supported.");
 		}
+
     };
     window.$yt = $yt;
 })(typeof window !== "undefined" ? window : this);
