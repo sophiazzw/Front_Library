@@ -32,6 +32,7 @@ A personal common javascript library for front web development, based on jQuery.
 * supportCss3
 * openURLs
 * clone
+
 ...to be continued
 ## Usage
 	<script src="YT.js"></script>
