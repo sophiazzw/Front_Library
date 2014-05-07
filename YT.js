@@ -217,7 +217,7 @@
 			}
 		},
 
-		/**/
+		/* deep clone an object to a new one*/
 		clone: function (obj) {
 		    if (null == obj || "object" != typeof obj) return obj;
 		    if (obj instanceof Date) {
