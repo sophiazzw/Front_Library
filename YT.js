@@ -241,9 +241,14 @@
 		    }
 		    throw new Error("Unable to copy obj! Its type isn't supported.");
 		},
-		objectChanger: function (obj,fnc) {
+		changeObject: function (obj,fnc) {
 			fnc.call(obj);
+		},
+		getCssStyle: function (attr,pseudo){
+			var style = this.currentStule ? this.currentStyle : window.getComputedStyle(this, pseudo);
+			return style.getPropertyValue ? style.getPropertyValue(attr) : style.getAttribute(attr); 
 		}
+
 
     };
     

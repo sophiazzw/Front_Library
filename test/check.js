@@ -14,3 +14,6 @@ console.log(color1);
 console.log(color);
 
 console.log(escape('http://www.baidu.com?faasd=a234&rewr=987'));
+console.log($('ul li').css('background-color'));
+console.log(window.getComputedStyle($yt('ul li')[0],null).getPropertyValue('background-color'));
+console.log($yt('ul li')[0].currentStyle['background-color']);
