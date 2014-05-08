@@ -1,3 +1,4 @@
+
 //console.log( $yt( "li" ).get( 0 ) );	
 var color = {aa:'aa1',bb:'bb1',cc:['cc1','cc2']}
 console.log($yt().getFirstValue(color));
@@ -11,3 +12,5 @@ console.log(color1);
 color.aa = 'aa2';
 console.log(color1);
 console.log(color);
+
+console.log(escape('http://www.baidu.com?faasd=a234&rewr=987'));

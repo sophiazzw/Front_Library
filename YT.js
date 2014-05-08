@@ -240,8 +240,12 @@
 		        return copy;
 		    }
 		    throw new Error("Unable to copy obj! Its type isn't supported.");
+		},
+		objectChanger: function (obj,fnc) {
+			fnc.call(obj);
 		}
 
     };
+    
     window.$yt = $yt;
 })(typeof window !== "undefined" ? window : this);

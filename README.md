@@ -32,6 +32,7 @@ A personal common javascript library for front web development, based on jQuery.
 * supportCss3
 * openURLs
 * clone
+* objectChanger
 
 ...to be continued
 ## Usage
