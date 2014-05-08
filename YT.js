@@ -28,14 +28,14 @@
     $yt.fn = $yt.prototype = {
 
     	hide: function(fadespeed,fn){
-    		for (var i = 0; i < this.length; i++){
+    		for (var i = 0, len = this.length; i < len; i++){
     			this[i].style.display = 'none';
     		}
     		return this;
     	},
 
     	show: function(fadespeed,fn){
-    		for (var i = 0; i < this.length; i++){
+    		for (var i = 0, len = this.length; i < len; i++){
     			this[i].style.display = 'inherit';
     		}
     		return this;
@@ -98,12 +98,14 @@
 			    callback(img);     
 			}; 
 		},
-
+		preventDefault:function(e){
+			if (e.preventDefault) e.preventDefault();
+			else e.returnValue = false;
+		},
 		/* cancel the brower's default drag events */
 		cancelDragDefault: function(fn) {
-			this[0].addEventListener('dragstart', function(event) {
-		    	if (event.preventDefault) event.preventDefault();
-				else event.returnValue = false;
+			this[0].addEventListener('dragstart', function(e) {
+		    	$yt.fn.preventDefault(e);
 		    },false);
 		    document.ondragstart = function (){ return false; }
 		    return this;
@@ -248,9 +250,47 @@
 			pseudo = (pseudo === undefined ? null : pseudo);
 			var style = this.currentStule ? this.currentStyle : window.getComputedStyle(this, pseudo);
 			return style.getPropertyValue ? style.getPropertyValue(attr) : style.getAttribute(attr); 
+		},
+		addHandler: function(type,handler){
+			/* when used , should better declare the handler function first, then invoke with the name of handler */
+			/* results in smaller memory consumption, and can have a reference to the handler while use removeEventHandler */	
+			for(var i = 0, len = this.length; i < len; i++){
+				if(this[i].addEventListener){
+					this[i].addEventListener(type,handler,false);
+				}else if(this[i].attachEvent){
+					this[i].attachEvent('on'+type, handler);
+				}else{
+					this[i]['on'+type] = handler;
+				}
+			}
+		},
+		removeHandler: function (type,handler){
+			for(var i = 0, len = this.length; i < len; i++){
+				if(this[i].removeEventListener){
+					this[i].removeEventListener(type,handler,false);
+				}else if(this[i].detachEvent){
+					this[i].attachEvent('on'+type, handler);
+				}else{
+					this[i]['on'+type] = null;
+				}
+			}
+		},
+		stopPropagation: function (e) {
+			if(e.stopPropagation){
+				e.stopPropagation();
+			}else{
+				e.cancelBubble = true;
+			}
+		},
+		getEvent:function (e){
+			return e ? e : window.e;
+		},
+		getTarget:function(e){
+			return e.target || e.srcElement;
+		},
+		getKeyCode:function(e){
+			return e.keyCode ? e.keyCode : e.which;
 		}
-
-
     };
     
     window.$yt = $yt;

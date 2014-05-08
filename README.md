@@ -33,6 +33,13 @@ A personal common javascript library for front web development, based on jQuery.
 * openURLs
 * clone
 * objectChanger
+* getCssStyle
+* addHandler
+* removeHandler
+* stopPropagation
+* getEvent
+* getTarget
+* getKeyCode
 
 ...to be continued
 ## Usage
