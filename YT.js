@@ -245,6 +245,7 @@
 			fnc.call(obj);
 		},
 		getCssStyle: function (attr,pseudo){
+			pseudo = (pseudo === undefined ? null : pseudo);
 			var style = this.currentStule ? this.currentStyle : window.getComputedStyle(this, pseudo);
 			return style.getPropertyValue ? style.getPropertyValue(attr) : style.getAttribute(attr); 
 		}
