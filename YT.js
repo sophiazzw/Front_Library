@@ -293,20 +293,24 @@
 		getKeyCode: function (e) {
 			return e.keyCode ? e.keyCode : e.which;
 		},
-		hasClass: function( selector ) {
-			var rclass = /[\t\r\n\f]/g;
-			var className = " " + selector + " ",
-				i = 0,
-				l = this.length;
-			for ( ; i < l; i++ ) {
-				if ( this[i].nodeType === 1 && (" " + this[i].className + " ").replace(rclass, " ").indexOf( className ) >= 0 ) {
-					return true;
-				}
+		hasClass: function (name) {
+			var i = 0, 
+				len = this.length, 
+				classReg = new RegExp('(\\s|^)' + name + '(\\s|$)');
+			for( ; i < len; i++){
+				if(this[i].className.match(classReg)) return true;
 			}
-
-			return false;
+			return false; 
 		},
 		addClass: function (name) {
+			var i = 0, 
+				len = this.length, 
+				classReg = new RegExp('(\\s|^)' + name + '(\\s|$)');
+			for( ; i < len; i++){
+				if(!this[i].className.match(classReg)) {
+					this[i].className += (this[i].className ? ' ' : '') + name;
+				};
+			}
 			return this;
 		}
     };

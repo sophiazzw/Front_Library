@@ -40,6 +40,8 @@ A personal common javascript library for front web development, based on jQuery.
 * getEvent
 * getTarget
 * getKeyCode
+* hasClass
+* addClass
 
 ...to be continued
 ## Usage
