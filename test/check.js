@@ -12,8 +12,9 @@ console.log(color1);
 color.aa = 'aa2';
 console.log(color1);
 console.log(color);
-
+$yt('#bar').hide();
 console.log(escape('http://www.baidu.com?faasd=a234&rewr=987'));
-console.log($('ul li').css('background-color'));
-console.log(window.getComputedStyle($yt('ul li')[0],null).getPropertyValue('background-color'));
-console.log($yt('ul li')[0].currentStyle['background-color']);
+//console.log($('ul li').css('background-color'));
+//console.log(window.getComputedStyle($yt('ul li')[0],null).getPropertyValue('background-color'));
+console.log($yt('#foo').getCssStyle('background-color'));
+console.log($('ul li').hasClass('ss'));

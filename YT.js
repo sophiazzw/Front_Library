@@ -28,14 +28,16 @@
     $yt.fn = $yt.prototype = {
 
     	hide: function(fadespeed,fn){
-    		for (var i = 0, len = this.length; i < len; i++){
+    		var i = 0 ,len = this.length;
+    		for (; i < len; i++){
     			this[i].style.display = 'none';
     		}
     		return this;
     	},
 
     	show: function(fadespeed,fn){
-    		for (var i = 0, len = this.length; i < len; i++){
+    		var i = 0 ,len = this.length;
+    		for (; i < len; i++){
     			this[i].style.display = 'inherit';
     		}
     		return this;
@@ -104,9 +106,9 @@
 		},
 		/* cancel the brower's default drag events */
 		cancelDragDefault: function(fn) {
-			this[0].addEventListener('dragstart', function(e) {
+			this.addHandler('dragstart', function(e) {
 		    	$yt.fn.preventDefault(e);
-		    },false);
+		    });
 		    document.ondragstart = function (){ return false; }
 		    return this;
 		},
@@ -247,14 +249,14 @@
 			fnc.call(obj);
 		},
 		getCssStyle: function (attr,pseudo){
-			pseudo = (pseudo === undefined ? null : pseudo);
-			var style = this.currentStule ? this.currentStyle : window.getComputedStyle(this, pseudo);
+			var style = this[0].currentStule ? this[0].currentStyle : window.getComputedStyle(this[0], pseudo);
 			return style.getPropertyValue ? style.getPropertyValue(attr) : style.getAttribute(attr); 
 		},
 		addHandler: function(type,handler){
 			/* when used , should better declare the handler function first, then invoke with the name of handler */
 			/* results in smaller memory consumption, and can have a reference to the handler while use removeEventHandler */	
-			for(var i = 0, len = this.length; i < len; i++){
+			var i = 0, len = this.length;
+			for( ; i < len; i++){
 				if(this[i].addEventListener){
 					this[i].addEventListener(type,handler,false);
 				}else if(this[i].attachEvent){
@@ -282,14 +284,30 @@
 				e.cancelBubble = true;
 			}
 		},
-		getEvent:function (e){
+		getEvent: function (e) {
 			return e ? e : window.e;
 		},
-		getTarget:function(e){
+		getTarget: function (e) {
 			return e.target || e.srcElement;
 		},
-		getKeyCode:function(e){
+		getKeyCode: function (e) {
 			return e.keyCode ? e.keyCode : e.which;
+		},
+		hasClass: function( selector ) {
+			var rclass = /[\t\r\n\f]/g;
+			var className = " " + selector + " ",
+				i = 0,
+				l = this.length;
+			for ( ; i < l; i++ ) {
+				if ( this[i].nodeType === 1 && (" " + this[i].className + " ").replace(rclass, " ").indexOf( className ) >= 0 ) {
+					return true;
+				}
+			}
+
+			return false;
+		},
+		addClass: function (name) {
+			return this;
 		}
     };
     
