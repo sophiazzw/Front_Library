@@ -146,6 +146,10 @@
 			return navigator.userAgent.match(/Android|webOS|iPhone|iPod|BlackBerry|Windows Phone|ZuneWP7|IEMobile|Opera Mini/i) ? true : false;
 		},
 
+		isIE : function () {
+			return !!window.ActiveXObject; 
+		},
+
 		/* sof question id 566303 by Paul Sweatte */
 		isIE6: function () {
 			return (!!window.ActiveXObject && !window.XMLHttpRequest) ? true : false;
