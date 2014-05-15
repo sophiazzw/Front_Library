@@ -317,6 +317,18 @@
 			}
 			return this;
 		},
+		clear: function () {
+		    this.length = 0;
+		    return this;
+		},
+
+		first: function () {
+			return this[0];
+		},
+
+		last: function () {
+			return this[this.length - 1];
+		}
 		
     };
     
