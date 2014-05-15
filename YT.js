@@ -316,7 +316,8 @@
 				};
 			}
 			return this;
-		}
+		},
+		
     };
     
     window.$yt = $yt;
