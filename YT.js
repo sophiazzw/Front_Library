@@ -253,7 +253,7 @@
         	}
         	return goal;
         },
-        
+
         /* deep clone an object to a new one*/
         clone: function(obj) {
             if (null == obj || "object" != typeof obj) return obj;
@@ -368,44 +368,15 @@
         	return toString.call(obj) === STRING_CLASS;
         },
 
-        create: function() {
-            var parent = null,
-                properties = this.from();
-            if (this.isFunction(properties[0]))
-                parent = properties.shift();
-
-            function klass() {
-                this.init.apply(this, arguments);
-            }
-
-            Object.extend(klass, Class.Methods);
-            klass.superclass = parent;
-            klass.subclasses = [];
-
-            if (parent) {
-                subclass.prototype = parent.prototype;
-                klass.prototype = new subclass;
-                parent.subclasses.push(klass);
-            }
-
-            for (var i = 0, length = properties.length; i < length; i++)
-                klass.addMethods(properties[i]);
-
-            if (!klass.prototype.initialize)
-                klass.prototype.initialize = Prototype.emptyFunction;
-
-            klass.prototype.constructor = klass;
-            return klass;
-        },
         //from: converts an array-like object to a true array
         from: function() {
             return slice.call(this);
         },
+        
         //Array.of([elem1], [elem2], ...),returns elem1, elem2, etc. in an array.
         of: function(arguments) {
             return slice.call(arguments);
         }
-
     };
 
     window.$yt = $yt;
