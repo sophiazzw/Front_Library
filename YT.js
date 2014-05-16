@@ -229,7 +229,7 @@
         },
 
         /* open a series of urls at one time */
-        openURLs: function(url) {
+        openURLs: function (url) {
             if (!url) return false;
             var attach = "http://";
             var urlSplit = url.split(/\r\n|\r|\n/);
@@ -240,6 +240,20 @@
             }
         },
 
+        extend: function (goal,source){
+        	for (var i in source) {
+        		goal[i] = source[i];
+        	}
+        	return goal;
+        },
+
+        include: function (goal,source){
+        	for (var i in source) {
+        		goal.fn[i] = source[i];
+        	}
+        	return goal;
+        },
+        
         /* deep clone an object to a new one*/
         clone: function(obj) {
             if (null == obj || "object" != typeof obj) return obj;
