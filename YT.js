@@ -378,6 +378,14 @@
         isString: function(obj) {
         	return toString.call(obj) === STRING_CLASS;
         },
+        
+        isElement: function (obj) {
+            return !!(obj && obj.nodeType == 1);
+        },
+
+        isArray: function (obj) {
+            return toString.call(obj) === ARRAY_CLASS;
+        },
 
         //from: converts an array-like object to a true array
         from: function() {
