@@ -42,9 +42,16 @@ A personal common javascript library for front web development, based on jQuery.
 * getKeyCode
 * hasClass
 * addClass
+* clear
+* first
+* last
+* isFunction
+* isString
+* from
+* of
 
 ...to be continued
 ## Usage
-	<script src="YT.js"></script>
+	<script src="YT.min.js"></script>
 
 This will provide $yt ad a global object , and this object has kinds of methods
