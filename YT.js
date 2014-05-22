@@ -278,13 +278,16 @@
             }
             throw new Error("Unable to copy obj! Its type isn't supported.");
         },
+
         changeObject: function(obj, fnc) {
             fnc.call(obj);
         },
+
         getCssStyle: function(attr, pseudo) {
             var style = this[0].currentStule ? this[0].currentStyle : window.getComputedStyle(this[0], pseudo);
             return style.getPropertyValue ? style.getPropertyValue(attr) : style.getAttribute(attr);
         },
+
         addHandler: function(type, handler) {
             /* when used , should better declare the handler function first, then invoke with the name of handler */
             /* results in smaller memory consumption, and can have a reference to the handler while use removeEventHandler */
@@ -300,6 +303,7 @@
                 }
             }
         },
+
         removeHandler: function(type, handler) {
             for (var i = 0, len = this.length; i < len; i++) {
                 if (this[i].removeEventListener) {
@@ -311,6 +315,7 @@
                 }
             }
         },
+
         stopPropagation: function(e) {
             if (e.stopPropagation) {
                 e.stopPropagation();
@@ -318,15 +323,19 @@
                 e.cancelBubble = true;
             }
         },
+
         getEvent: function(e) {
             return e ? e : window.e;
         },
+
         getTarget: function(e) {
             return e.target || e.srcElement;
         },
+
         getKeyCode: function(e) {
             return e.keyCode ? e.keyCode : e.which;
         },
+
         hasClass: function(name) {
             var i = 0,
                 len = this.length,
@@ -336,6 +345,7 @@
             }
             return false;
         },
+
         addClass: function(name) {
             var i = 0,
                 len = this.length,
@@ -347,6 +357,7 @@
             }
             return this;
         },
+        
         clear: function() {
             this.length = 0;
             return this;
