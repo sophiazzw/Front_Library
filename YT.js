@@ -387,6 +387,15 @@
             return toString.call(obj) === ARRAY_CLASS;
         },
 
+        isCharNumber:function (s) {
+            return s.search(/(^[a-z0-9A-Z]{3,20})$/)==-1 ? false :true;
+        },
+
+        isValidEmail:function (email) {
+            var reg = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            return reg.test(email) ? true : false;
+        },
+
         //from: converts an array-like object to a true array
         from: function() {
             return slice.call(this);
