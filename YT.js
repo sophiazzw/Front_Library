@@ -404,7 +404,13 @@
         //Array.of([elem1], [elem2], ...),returns elem1, elem2, etc. in an array.
         of: function(arguments) {
             return slice.call(arguments);
+        },
+
+        hasLength: function(){
+            return this.length === + this.length; // return if an object has attr length
         }
+
+        
     };
 
     window.$yt = $yt;
