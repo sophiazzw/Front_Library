@@ -408,6 +408,14 @@
 
         hasLength: function(){
             return this.length === + this.length; // return if an object has attr length
+        },
+
+        utf8_to_b64: function (str) {
+            return window.btoa(encodeURIComponent(escape(str)));
+        },
+
+        b64_to_utf8: function (str) {
+            return unescape(decodeURIComponent(window.atob(str)));
         }
 
         
