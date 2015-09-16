@@ -20,10 +20,27 @@
 		append : function(content){
 			var i = 0; len = this.length;
 			for (; i <= len; i++) {
-				this[i].innerHTML = content;
+				this[i].insertAdjacentHTML('beforeend',content);
 			};
 		},
-
+		prepend : function(content){
+			var i = 0; len = this.length;
+			for (; i <= len; i++) {
+				this[i].insertAdjacentHTML('afterbegin',content);
+			};
+		},
+		after : function(content){
+			var i = 0; len = this.length;
+			for (; i <= len; i++) {
+				this[i].insertAdjacentHTML('afterend',content);
+			};
+		},
+		before : function(content){
+			var i = 0; len = this.length;
+			for (; i <= len; i++) {
+				this[i].insertAdjacentHTML('beforebegin',content);
+			};
+		}
 	};
 	//$('#a') $('.a .b') $('div a') $('<div>a</div>') $($('.a'))
 	window.$ = $;

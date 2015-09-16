@@ -5,10 +5,11 @@
 	<title>Document</title>
 </head>
 <body>
-	<div id="real"></div>
+	<div class="real">a</div>
+	<div class="real">a</div>
 	<script src="./dom.js" type="text/javascript" charset="utf-8"></script>
 	<script>
-	console.log($('#real').append('aaa'));
+	$('.real').append('<a href="#">添加的内容</a>')
 	</script>
 </body>
 </html>
