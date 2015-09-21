@@ -15,6 +15,9 @@
             }
             this.length = result.length;
         }
+        if(properties instanceof($)){
+        	return properties;
+        }
         return this;
 	};
 
@@ -57,12 +60,13 @@
             frag = FRAGMENT;
         div.innerHTML = html;
         while(div.firstChild){
+            console.log(div.childNodes);
             frag.appendChild( div.firstChild );
         }
         return frag;
     }
-	console.log(elementToHTML($('div')[0]));
-	console.log(fragment('<a><a>'));
+	//console.log(elementToHTML($('div')[0]));
+	console.log($($('.real')));
 	//$('#a') $('.a .b') $('div a') $('<div>a</div>') $($('.a'))
 	window.$ = $;
 })(typeof window !== "undefined" ? window : this);
