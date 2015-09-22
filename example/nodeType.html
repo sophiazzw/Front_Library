@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="foo" class="xxx">OK</div>
+	hello<p id="foo2"></p><!-- comment -->
+	<script>
+	    var foo = document.getElementById('foo');
+	    
+	    //元素节点 nodeType = 1
+	    console.log(foo instanceof(Element));
+	    console.log(foo.nodeType); //div#id 
+
+	    //属性节点 nodeType = 2
+	    console.log(foo.attributes['id'] instanceof(Attr));
+	    console.log(foo.attributes['id'].nodeType); //div 的 id
+
+	    //文本节点 nodeType = 3
+	    //console.log(typeof(foo.innerHTML));
+	    // foo.innerHTML = '1';
+	    // console.log(foo);
+	    console.log(foo.nextSibling instanceof(Text));
+	    console.log(foo.nextSibling.nodeType); //hello
+
+	    //注释节点 nodeType = 8
+	    console.log(document.getElementById('foo2').nextSibling instanceof(Comment));
+	    console.log(document.getElementById('foo2').nextSibling.nodeType);
+
+	    //文档节点 nodeType = 9
+	    console.log(document instanceof(Document));
+	    document.nodeType = 1;
+	    console.log(document.nodeType);
+
+	    //dtd节点 nodeType = 10
+	    console.log(document.childNodes[0] instanceof(DocumentType));
+	    console.log(document.childNodes[0].nodeType);
+	    
+	    //fragment节点 nodeType = 11
+	    console.log((document.createDocumentFragment()) instanceof(DocumentFragment));
+	    console.log((document.createDocumentFragment()).nodeType);
+
+	    // foo.parentNode = document;
+	    // console.log(foo.parentNode);
+	    foo.attributes['id'] = 'a';
+	    console.log(foo.attributes['id']);
+	</script>
+</body>
+</html>

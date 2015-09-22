@@ -1,6 +1,5 @@
 (function(window,undefined){
-	var DIV = document.createElement("div"),
-		FRAGMENT = document.createDocumentFragment();
+	
 	var $ = function(properties){
 		if(window === this){
 			return new $(properties); //实例化$
@@ -56,17 +55,18 @@
 		return div.innerHTML;
 	}
 	function fragment( html ){
-        var div = DIV,
-            frag = FRAGMENT;
+        var div = document.createElement("div"),
+			fragment = document.createDocumentFragment();
         div.innerHTML = html;
         while(div.firstChild){
-            console.log(div.childNodes);
-            frag.appendChild( div.firstChild );
+            //console.log(div.childNodes);
+            fragment.appendChild( div.firstChild );
         }
-        return frag;
+        console.log(fragment);
+        return fragment;
     }
 	//console.log(elementToHTML($('div')[0]));
-	console.log($($('.real')));
+	fragment('<a><a>');
 	//$('#a') $('.a .b') $('div a') $('<div>a</div>') $($('.a'))
 	window.$ = $;
 })(typeof window !== "undefined" ? window : this);

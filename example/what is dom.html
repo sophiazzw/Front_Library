@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-cmn-Hans-CN">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<style>
+	body{
+		color: #fff;
+	}
+	</style>
+</head>
+<body>
+	<div id="foo" class="xxx">OK</div>hello<p id="foo2"></p><!-- comment -->
+	<script>
+	    var foo = document.getElementById('foo');
+	    // console.log(document);
+	    // console.log(foo);
+	    // console.log(foo instanceof(Element));
+	    // console.log(document instanceof(Document));
+
+	    // console.log(StyleSheet);
+
+	    // console.log(document.styleSheets[0] instanceof(StyleSheet));
+	    // console.log(document.styleSheets[1] instanceof(StyleSheet));
+	    //元素节点 nodeType = 1
+	    console.log(foo.nodeType); //div#id 
+
+	    //属性节点 nodeType = 2
+	    //console.log(foo.attributes['id'] instanceof(Attr));
+	    console.log(foo.attributes['id'].nodeType); //div 的 id
+
+	    //文本节点 nodeType = 3
+	    //console.log(typeof(foo.innerHTML));
+	    console.log(foo.nextSibling.nodeType); //hello
+
+	    //注释节点 nodeType = 8
+	    console.log(document.getElementById('foo2').nextSibling.nodeType);
+
+	    //文档节点 nodeType = 9
+	    console.log(document.nodeType);
+
+	    //dtd节点 nodeType = 10
+	    console.log(document.childNodes[0].nodeType);
+	    
+	    //fragment节点 nodeType = 11
+	    console.log((document.createDocumentFragment()).nodeType);
+	</script>
+</body>
+</html>
