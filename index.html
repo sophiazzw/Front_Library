@@ -11,25 +11,6 @@
 	<script>
 	// $('.real').append('<a href="#">添加的内容</a>');
 	</script>
-	<div id="foo" class="xxx"></div>hello<p id="foo2"></p><!-- comment -->
-	<script>
-	    var foo = document.getElementById('foo');
-	    //元素节点 nodeType = 1
-	    console.log(document);
-	    console.log(foo);
-	    console.log(foo.nodeType); 
-	    console.log(foo instanceof(Element));
-	    console.log(document instanceof(Document));
-	    //属性节点 nodeType = 2
-	    console.log(foo.attributes['id'].nodeType);
-	    //文本节点 nodeType = 3
-	    console.log(foo.nextSibling.nodeType);
-	    //注释节点 nodeType = 8
-	    console.log(document.getElementById('foo2').nextSibling.nodeType);
-	    //文档节点 nodeType = 9
-	    console.log(document.nodeType);
-	    //fragment节点 nodeType = 11
-	    console.log((document.createDocumentFragment()).nodeType);
-	</script>
+	
 </body>
 </html>

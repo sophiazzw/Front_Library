@@ -5,13 +5,16 @@
 	<title>Document</title>
 </head>
 <body>
-	<div id="foo" class="xxx">OK</div>
+	<div id="foo" class="xxx">OK <a href="aa"></a></div>
 	hello<p id="foo2"></p><!-- comment -->
 	<script>
 	    var foo = document.getElementById('foo');
 	    
 	    //元素节点 nodeType = 1
 	    console.log(foo instanceof(Element));
+	    console.log(foo.childNodes);
+	    console.log(foo.childNodes[0].nodeType); //return NodeList
+	    console.log(foo.children[0].nodeType); //return HTMLCollection
 	    console.log(foo.nodeType); //div#id 
 
 	    //属性节点 nodeType = 2
