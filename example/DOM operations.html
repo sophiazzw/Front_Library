@@ -19,8 +19,12 @@
 	console.log(document.getElementById('aa').children[0].nodeType);
 	console.log(document.getElementById('aa').childNodes[0].nodeType);
 	console.log(document.getElementById('aa').childNodes[0]);
+	console.log(document.querySelectorAll('#aa .bb'));
+	console.log(document.querySelectorAll('#aa .bb')[0].nodeType);
 
-
+	console.log(document.querySelector('#aa .bb'));
+	console.log(document.querySelector('#aa .bb').nodeType);
+	console.log(document.createDocumentFragment());
 // var divs = document.getElementsByTagName("div"),
 //     i,
 //     div;

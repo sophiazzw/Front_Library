@@ -36,13 +36,24 @@
 	$.isPlainObject = function(arg){
 		return TO_STRING.call(arg) 
 	}
-
+	function fragment( html ){
+        var div = document.createElement("div"),
+			fragment = document.createDocumentFragment();
+        div.innerHTML = html;
+        while(div.firstChild){
+            fragment.appendChild( div.firstChild );
+        }
+        return fragment;
+    }
 	$.fn = $.prototype = {};
 	$.fn.extend({
 		prepend : function(){
-			
+
 		},
 		append : function(){
+
+		},
+		html : function(){
 			
 		}
 	});
@@ -109,17 +120,7 @@
 		div.appendChild(element)
 		return div.innerHTML;
 	}
-	function fragment( html ){
-        var div = document.createElement("div"),
-			fragment = document.createDocumentFragment();
-        div.innerHTML = html;
-        while(div.firstChild){
-            //console.log(div.childNodes);
-            fragment.appendChild( div.firstChild );
-        }
-        console.log(fragment);
-        return fragment;
-    }
+
 	//console.log(elementToHTML($('div')[0]));
 	fragment('<a><a>');
 	console.log($.extend({},{a:2,b:3}));
