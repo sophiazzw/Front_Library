@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="cxcv">
 </head>
 <body>
 	<div id="foo" class="xxx">OK <a href="aa"></a></div>
@@ -12,6 +13,7 @@
 	    
 	    //元素节点 nodeType = 1
 	    console.log(foo instanceof(Element));
+	    console.log(document.styleSheets[0] instanceof(Element));
 	    console.log(foo.childNodes);
 	    console.log(foo.childNodes[0].nodeType); //return NodeList
 	    console.log(foo.children[0].nodeType); //return HTMLCollection
