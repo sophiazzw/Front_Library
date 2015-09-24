@@ -4,6 +4,7 @@
 		OBJECT_CLASS = '[object Object]';
 
 	var TO_STRING = Object.prototype.toString;
+	var rhtml = /<|&#?\w+;/;
 
 	var $ = function(properties){
 		if(window === this){
@@ -36,27 +37,26 @@
 	$.isPlainObject = function(arg){
 		return TO_STRING.call(arg) 
 	}
-	function fragment( html ){
-        var div = document.createElement("div"),
-			fragment = document.createDocumentFragment();
-        div.innerHTML = html;
-        while(div.firstChild){
-            fragment.appendChild( div.firstChild );
+	function fragment( element ){
+        var fragment = document.createDocumentFragment(),
+        	div = document.createElement('div'),
+        	l = element.length,
+        	ele,
+        	i = 0;
+        if(typeof(element) == 'string'){
+        	div.innerHTML = element;
+        	ele = div.childNodes;
+        	l = ele.length;
+        }else{
+        	ele = element;
+        }
+        for(;i < l;i++){
+        	fragment.appendChild(ele[i]);
         }
         return fragment;
     }
+
 	$.fn = $.prototype = {};
-	$.fn.extend({
-		prepend : function(){
-
-		},
-		append : function(){
-
-		},
-		html : function(){
-			
-		}
-	});
 
 	//$.extend([deep], target, object1, [objectN])
 	$.extend = $.fn.extend = function(){
@@ -114,16 +114,90 @@
 		// Return the modified object
 		return target;
 	};
-	
-	function elementToHTML(element){
-		var div = DIV;
-		div.appendChild(element)
-		return div.innerHTML;
-	}
+	$.extend({
+		fragment : fragment
+	}) 
+	$.fn.extend({
+		prepend : function(child){
+			var node = this,
+				len = node.length,
+				i = 0;
 
-	//console.log(elementToHTML($('div')[0]));
-	fragment('<a><a>');
-	console.log($.extend({},{a:2,b:3}));
+			if(node.length == 0 || !child) {
+				return false;
+			}
+			for(;i < len; i++){
+				node[i].insertBefore($.fragment(child).cloneNode(true),node[i].firstChild)
+			}
+			return this;
+		},
+		append : function(child){
+			var node = this,
+				len = node.length,
+				i = 0;
+
+			if(node.length == 0 || !child) {
+				return false;
+			}
+			for(;i < len; i++){
+				node[i].appendChild($.fragment(child).cloneNode(true));
+			}
+			return this;
+		},
+		after : function(child){
+			var node = this,
+				len = node.length,
+				i = 0;
+
+			if(node.length == 0 || !child) {
+				return false;
+			}
+			for(;i < len; i++){
+				if(node[i].parentNode){
+					node[i].parentNode.insertBefore($.fragment(child).cloneNode(true),node[i].nextSibling);
+				}
+			}
+			return this;
+		},
+		before : function(child){
+			var node = this,
+				len = node.length,
+				i = 0;
+
+			if(node.length == 0 || !child) {
+				return false;
+			}
+			for(;i < len; i++){
+				if(node[i].parentNode){
+					node[i].parentNode.insertBefore($.fragment(child).cloneNode(true),node[i]);
+				}
+			}
+			return this;
+		},
+		empty : function(){
+			var ele,
+				i = 0;
+			for(;(ele = this[i]) != null;i++){
+				if(ele.nodeType === 1){
+					//$.cleanData(ele)
+					ele.textContent = "";
+				}
+			}
+			return this;
+		},
+		html : function(value){
+			if(typeof(value) == 'string' || value.nodeType === 1){
+				return this.innerHTML = value;
+			}
+		}
+	});
+
+	//console.log(fragment('<a>'));
+	//console.log($.extend({},{a:2,b:3}));
+	console.log($('.real').prepend('ass'));
+
+	//console.log($('.real1').append($('.text')));
+	// console.log(fragment($('.real')));
 	// console.log($.isArray([1]));
 	// console.log($.isFunction(function a(){}));
 	//$('#a') $('.a .b') $('div a') $('<div>a</div>') $($('.a'))
