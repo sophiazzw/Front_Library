@@ -55,7 +55,11 @@
         }
         return fragment;
     }
-
+    function HTMLtoElement(html){
+    	var div = document.createElement('div');
+    	div.innerHTML = html;
+    	return div.childNodes;
+    }
 	$.fn = $.prototype = {};
 
 	//$.extend([deep], target, object1, [objectN])
