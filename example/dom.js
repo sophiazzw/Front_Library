@@ -26,6 +26,7 @@
         return this;
 	};
 
+	
 	$.isArray = ('isArray' in Array) ? Array.isArray : function(arg){
 		return TO_STRING.call(arg) === ARRAY_CLASS;
 	};
@@ -65,7 +66,7 @@
     		l = element.length;
     	for(;i < l ; i++){
     		if($.isFunction(callback)){
-    			callback.call(this,element[i],i,element);
+    			callback.call(this,element[i]);
     		}
     	}
     	return element;
@@ -131,11 +132,11 @@
 	$.extend({
 		fragment : fragment,
 		each : each
-	}) 
+	});
 	$.fn.extend({
 		prepend : function(child){
 			return $.each(this,function(node){
-				node.insertBefore($.fragment(child).cloneNode(true),node.firstChild)
+				node.insertBefore($.fragment(child),node.firstChild)
 			});
 		},
 		append : function(child){

@@ -22,9 +22,13 @@
 	<p class="text">asdf</p>
 	<p class="text">asdf</p>
 	<div id="a">aa</div>
-	<script src="./dom1.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./dom.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+		//console.log($('a').parent());
+		</script>
 	<script>
-	// $('.real').append('<a href="#">添加的内容</a>');
+	var text = $('.text');
+	 $('.real').prepend(text);
 	</script>
 	
 </body>

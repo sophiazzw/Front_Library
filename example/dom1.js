@@ -5,6 +5,7 @@
 	      	element = document.getElementById(element);
 	    return element;
 	}
+
 	Element.prototype.parent = function(){
 		return this.parentNode;
 	}
@@ -40,4 +41,6 @@
 	// console.log($('a').insertAfter($('a')));
 	$('a').before($('a'))
 })(typeof window !== "undefined" ? window : this);
+
+
 //传入真正的window

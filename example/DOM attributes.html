@@ -11,42 +11,42 @@
 	<script>
 	/***innerHTML & innerText & textContent***/
 
-	// Get the inner html:
+	//Get the inner html:
 	// var html = document.getElementById("divA").innerHTML;
 	// console.log(html);
 
-	// // Set the html:
-	// document.getElementById("divA").innerHTML = "This is some text";
+	// Set the html:
+	//document.getElementById("divA").innerHTML = "That is some text";
 	// document.getElementById("divA").innerHTML = "<a href=''>我是一个链接</a>";
 
 	/*-------------------------------------------------------------------------*/
 
 
-	// Get the text content:
-	var text = document.getElementById("divB").innerText;
-	// |text| is set to "This is some text".
-	console.log(text);
-	// Set the text content:
-	//document.getElementById("divB").innerText = "This is some text";
-	// The HTML for divA is now:
-	//   <div id="divA">This is some text</div>
-
-	/*-------------------------------------------------------------------------*/
-
 	// // Get the text content:
-	var text = document.getElementById("divB").textContent;
-	// |text| is set to "This is some text".
-	console.log(text);
-	// Set the text content:
-	//document.getElementById("divA").textContent = "This is some text";
-	// The HTML for divA is now:
-	//   <div id="divA">This is some text</div>
+	// var text = document.getElementById("divB").innerText;
+	// // |text| is set to "This is some text".
+	// console.log(text);
+	// // Set the text content:
+	// //document.getElementById("divB").innerText = "This is some text";
+	// // The HTML for divA is now:
+	// //   <div id="divA">This is some text</div>
+
+	// -------------------------------------------------------------------------
+
+	// // // Get the text content:
+	// var text = document.getElementById("divB").textContent;
+	// // |text| is set to "This is some text".
+	// console.log(text);
+	// // Set the text content:
+	// //document.getElementById("divA").textContent = "This is some text";
+	// // The HTML for divA is now:
+	// //   <div id="divA">This is some text</div>
 	</script>
 
 	<script>
-	var childA = document.getElementById('childA');
+	//var childA = document.getElementById('childA');
 	var divA = document.getElementById('divA');
-	console.log(childA.parentNode)	
+	//console.log(childA.parentNode)	
 	console.log(divA.childNodes);	
 	console.log(divA.children);
 	</script>
