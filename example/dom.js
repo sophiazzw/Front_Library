@@ -60,6 +60,9 @@
     	div.innerHTML = html;
     	return div.childNodes;
     }
+    function each(element,callback){
+    	
+    }
 	$.fn = $.prototype = {};
 
 	//$.extend([deep], target, object1, [objectN])

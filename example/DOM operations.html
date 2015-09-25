@@ -14,8 +14,10 @@
 		</ul>
 	</div>
 	<script>
+	/***--------------------------查------------------------------------***/
 	console.log(document.getElementsByClassName('bb'));
 	console.log(document.getElementsByTagName('div'));
+
 	console.log(document.getElementById('aa').children[0].nodeType);
 	console.log(document.getElementById('aa').childNodes[0].nodeType);
 	console.log(document.getElementById('aa').childNodes[0]);
@@ -26,8 +28,11 @@
 	console.log(document.querySelector('#aa .bb').nodeType);
 	console.log(document.createDocumentFragment());
 
-	var aa = document.getElementById('bb');
+	var aa = document.getElementById('aa');
 	
+	/***--------------------------增------------------------------------***/
+	var textnode = document.createTextNode('text');
+	aa.appendChild(textnode);
 // var divs = document.getElementsByTagName("div"),
 //     i,
 //     div;
