@@ -61,7 +61,14 @@
     	return div.childNodes;
     }
     function each(element,callback){
-    	
+    	var i = 0,
+    		l = element.length;
+    	for(;i < l ; i++){
+    		if($.isFunction(callback)){
+    			callback.call(this,element[i],i,element);
+    		}
+    	}
+    	return element;
     }
 	$.fn = $.prototype = {};
 
@@ -122,21 +129,14 @@
 		return target;
 	};
 	$.extend({
-		fragment : fragment
+		fragment : fragment,
+		each : each
 	}) 
 	$.fn.extend({
 		prepend : function(child){
-			var node = this,
-				len = node.length,
-				i = 0;
-
-			if(node.length == 0 || !child) {
-				return false;
-			}
-			for(;i < len; i++){
-				node[i].insertBefore($.fragment(child).cloneNode(true),node[i].firstChild)
-			}
-			return this;
+			return $.each(this,function(node){
+				node.insertBefore($.fragment(child).cloneNode(true),node.firstChild)
+			});
 		},
 		append : function(child){
 			var node = this,
@@ -202,7 +202,9 @@
 	//console.log(fragment('<a>'));
 	//console.log($.extend({},{a:2,b:3}));
 	console.log($('.real').prepend('ass'));
-
+	$.each($('.real'),function(ele){
+		console.log(ele);
+	});
 	//console.log($('.real1').append($('.text')));
 	// console.log(fragment($('.real')));
 	// console.log($.isArray([1]));
