@@ -36,31 +36,47 @@
 			this.options = extend({
 				url : '',
 				data : {},
-				method : 'get',
+				type : 'get',
+				contentType : 'application/x-www-form-urlencoded',
 				async : true,
-				callback : function(){}
+				beforeSend : null,
+				cache : true,
+				code : 'UTF-8',
+				dataType : 'json',
+				ifModified : false,
+				username : '',
+				password : '',
+				success : function(){},
+				complete : function(){},
+				error : null
 			} || opt);
 			this.init();
 		};
 		Ajax.prototype.init = function(){
-			this. 
+			var self = this,
+				opt = self.options || {};
+
+			self.data = opt.data;	
+			self.url = opt.url;
+			self.type = opt.type;
 		};
 		Ajax.prototype.send = function(argument){
 			var self = this,
+				opt = self.options || {},
 				reg = /\?/,
 				data = self.formatData(self.data),
-				url = reg.test(self.url)?self.data?self.url.substring(0,self.url.search(reg)):self.url:self.url;
-			if(self.method == "get"){
+				url = reg.test(self.url) ? self.data ? self.url.substring(0,self.url.search(reg)) : self.url : self.url;
+			if(self.type == "get"){
 				if(self.data) url += "?"+data;
 				data = null;
 			};
 			self.XHR = self.createXHR();
 			if(!self.XHR) return false;
-			self.XHR.open(self.method, url, true);
+			self.XHR.open(opt.type, url, opt.async, opt.username, opt.password);
 			self.XHR.onreadystatechange = function(){
-				self.updatePage(o,this);	
+				self.complete(o,this);	
 			};
-			self.XHR.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset="+self.code+"");
+			self.XHR.setRequestHeader("Content-Type",opt.contentType + ";charset=" + self.code);
 		    self.XHR.send(data);
 		};
 		Ajax.prototype.formatData = function(data){
@@ -78,8 +94,26 @@
 				return typeof n == "string"?n:s(n).join("&");
 			}; 
 		};
-		Ajax.prototype. = function(argument){
-			 // body...  
+		Ajax.prototype.complete = function(o,x){
+			var xhrCallbacks = {};
+			
+			callback = function(type){
+				return function(){
+					if(callback){
+						callback = x.onload = x.onerror = null;
+						if(type == 'error'){
+							o.error.call(x,x.status,x.statusText);
+						}else if(type == 'abort'){
+							x.abort();
+						}else{
+							o.complete.call(x,x.status,x.statusText,typeof xhr.responseText === "string" ? {text: xhr.responseText} : undefined, xhr.getAllResponseHeaders());
+						}
+					}
+				}
+			}
+			this.beforeSend.call(x,x.status,"beforeSend");
+			x.onload = callback();
+			x.onerror = callback('error');
 		};
 		Ajax.createXHR = window.ActiveXObject !== undefined ? createActiveXHR : createStandardXHR;
 
@@ -138,8 +172,10 @@
         				add(this.name,this.value);
         			});
         		}else{
-
+        			
         		}
+        		return arr.join('&');
+
         	},
         	each : function(obj,callback){
         		var i = 0,
