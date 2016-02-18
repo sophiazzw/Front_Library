@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax practice</title>
+	<link rel="stylesheet" href="./common/reset.css">
+	<link rel="stylesheet" href="./common/style.css">
+</head>
+<body>
+	<div class="main_content">
+		<form method="post">
+			<div class="form-group">
+				<label for="" class="control-label w115">参数1：</label>
+				<input type="text" class="form-control w240">
+			</div>
+			<div class="form-group">
+				<label for="" class="control-label w115"></label>
+				<input type="radio" name="type" class="form-control">get&nbsp;
+				<input type="radio" name="type" class="form-control">post
+			</div>
+			<div class="form-group">
+				<label for="" class="control-label w115"></label>
+				<a id="send" class="btn btn-primary" href="javascript:;">send ajax request</a>
+			</div>
+		</form>
+	</div>
+	<script>
+	function extend(origin,extend){
+		for(var i in extend){
+			origin[i] = extend[i];
+		}
+		return origin;
+	}
+	+ function(){
+		var Ajax = function(opt){
+			this.options = extend({
+				url : '',
+				data : {},
+				method : 'get',
+				async : true,
+				callback : function(){}
+			} || opt);
+			this.init();
+		};
+		Ajax.prototype.init = function(){
+			this. 
+		};
+		Ajax.prototype.send = function(argument){
+			var self = this,
+				reg = /\?/,
+				data = self.formatData(self.data),
+				url = reg.test(self.url)?self.data?self.url.substring(0,self.url.search(reg)):self.url:self.url;
+			if(self.method == "get"){
+				if(self.data) url += "?"+data;
+				data = null;
+			};
+			self.XHR = self.createXHR();
+			if(!self.XHR) return false;
+			self.XHR.open(self.method, url, true);
+			self.XHR.onreadystatechange = function(){
+				self.updatePage(o,this);	
+			};
+			self.XHR.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset="+self.code+"");
+		    self.XHR.send(data);
+		};
+		Ajax.prototype.formatData = function(data){
+			var add = function(data){
+					var arr = [];
+					for(var i in data){
+						arr.push( i + "=" + data[i] );
+					};
+					return arr;
+				};
+			if( typeof data == "object" ){
+				return s(data).join("&");
+			} else if(typeof data == "string" ){
+				var n = /{/g.test(data)?JSON.parse(data):data;
+				return typeof n == "string"?n:s(n).join("&");
+			}; 
+		};
+		Ajax.prototype. = function(argument){
+			 // body...  
+		};
+		Ajax.createXHR = window.ActiveXObject !== undefined ? createActiveXHR : createStandardXHR;
+
+		function createActiveXHR(){
+			try {
+				return new window.ActiveXObject('Microsoft.XMLHTTP');
+			} catch(e) {
+				console.log(e);
+			}
+		}
+		function createStandardXHR(){
+			try {
+				return new window.XMLHttpRequest();
+			} catch(e) {
+				console.log(e);
+			}
+		}
+	}(window);
+
+	+ function (){
+		function Util(){
+			throw 'Util can\'t be instantialted';
+		}
+
+		var obj = Object.prototype,
+			toString = obj.toString();
+
+		var FUNCTION_CLASS   = 	 '[object Function]',
+	      	BOOLEAN_CLASS    = 	 '[object Boolean]',
+	      	NUMBER_CLASS     = 	 '[object Number]',
+	      	STRING_CLASS     = 	 '[object String]',
+	      	OBJECT_CLASS     = 	 '[object Object]',
+	      	ARRAY_CLASS      = 	 '[object Array]',
+	      	DOM_CLASS 		 =   '[object HTMLCollection]';
+
+		Util = {
+			isFunction : function(obj){
+				return toString.call(obj) == FUNCTION_CLASS;
+			},
+			isArray : ('isArray' in Array) ? Array.isArray : function(obj) {
+            	return toString.call(obj) === ARRAY_CLASS;
+        	},
+        	isObject : function(obj){
+        		return toString.call(obj) == OBJECT_CLASS;
+        	},
+        	isDomCollection : function(obj){
+        		return toString.call(obj) == DOM_CLASS || Util.isObject(obj);
+        	},
+        	param : function(obj){
+        		var add = function(key,value){
+        			var arr = [];
+        			arr[arr.length] = encodeURIComponent(key) + '=' + encodeURIComponent(value);
+        		};
+        		if(Util.isArray(obj) || Util.isDomCollection(obj)){
+        			Util.each(obj,function() {
+        				add(this.name,this.value);
+        			});
+        		}else{
+
+        		}
+        	},
+        	each : function(obj,callback){
+        		var i = 0,
+        			value;
+			    if (Util.isArray(obj) || obj.nodeType == 1) {
+					for(; i < length; i++) {
+						value = callback.call(obj[i], i);
+						if (value === false) break;
+					}
+				}else{
+					for(i in obj) {
+						value = callback.call(obj[i], i);
+						if (value === false) break;
+					}
+				}
+        	}
+		};
+	}
+	</script>
+</body>
+</html>
