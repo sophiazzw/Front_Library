@@ -48,7 +48,7 @@
 				password : '',
 				success : function(){},
 				complete : function(){},
-				error : null
+				error : function(){}
 			} || opt);
 			this.init();
 		};
@@ -70,7 +70,7 @@
 				if(self.data) url += "?"+data;
 				data = null;
 			};
-			self.XHR = self.createXHR();
+			self.XHR = Ajax.createXHR();
 			if(!self.XHR) return false;
 			self.XHR.open(opt.type, url, opt.async, opt.username, opt.password);
 			self.XHR.onreadystatechange = function(){
@@ -80,23 +80,15 @@
 		    self.XHR.send(data);
 		};
 		Ajax.prototype.formatData = function(data){
-			var add = function(data){
-					var arr = [];
-					for(var i in data){
-						arr.push( i + "=" + data[i] );
-					};
-					return arr;
-				};
 			if( typeof data == "object" ){
-				return s(data).join("&");
+				return Util.param(data);
 			} else if(typeof data == "string" ){
-				var n = /{/g.test(data)?JSON.parse(data):data;
-				return typeof n == "string"?n:s(n).join("&");
+				var n = /{/g.test(data) ? JSON.parse(data) : data;
+				return typeof n == "string" ? n : s(n).join("&");
 			}; 
 		};
 		Ajax.prototype.complete = function(o,x){
 			var xhrCallbacks = {};
-			
 			callback = function(type){
 				return function(){
 					if(callback){
@@ -131,6 +123,7 @@
 				console.log(e);
 			}
 		}
+		window.Ajax = Ajax;
 	}(window);
 
 	+ function (){
@@ -175,7 +168,6 @@
         			
         		}
         		return arr.join('&');
-
         	},
         	each : function(obj,callback){
         		var i = 0,
@@ -193,6 +185,7 @@
 				}
         	}
 		};
+		window.Util = Util;
 	}
 	</script>
 </body>
